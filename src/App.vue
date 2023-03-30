@@ -1,10 +1,12 @@
 <script>
 import axios from 'axios';
 import { store } from './store';
+import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 export default {
   name:'App',
   components: {
+    AppHeader,
     AppMain
   },
   data() {
@@ -50,7 +52,8 @@ export default {
 </script>
 
 <template>
-  <AppMain @submit="this.search()"/>
+  <AppHeader @submit="this.search()"/>
+  <AppMain />
 </template>
 
 

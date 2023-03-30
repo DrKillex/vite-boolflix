@@ -3,7 +3,7 @@ import CardMain from './CardMain.vue';
 import { store } from '../store';
 export default {
     name: 'AppMain',
-    emits: ["submit"],
+
     components: {
         CardMain
     },
@@ -16,20 +16,30 @@ export default {
 </script>
 
 <template>
-    <input type="text" v-model="store.search" @keyup.enter="$emit('submit')">
-    <button @click="$emit('submit')">cerca</button>
-    <h1>film</h1>   
-    <div v-for="movie in store.moviesResults">
-        <CardMain :item="movie"/>
-    </div>
-    <h1>serie</h1>
-    <div v-for="serie in store.seriesResults">
-        <CardMain :item="serie"/>
-    </div>
+    <main>
+        <div class="container pt-5">
+            <h1 class="text-center mb-5 p-3">film</h1>
+            <div class="row">
+                <div v-for="movie in store.moviesResults" class="col-3">
+                    <CardMain :item="movie" />
+                </div>
+            </div>
+            <h1 class="text-center my-5 p-3">serie</h1>
+            <div class="row">
+                <div v-for="serie in store.seriesResults" class="col-3">
+                    <CardMain :item="serie" />
+                </div>
+            </div>
+        </div>
+    </main>
 </template>
 
 <style lang="scss" scoped>
-div{
-    border: 1px solid black;
+main {
+    background-color: #434343;
+    h1 {
+        background-color: black;
+        color: red;
+    }
 }
 </style>
