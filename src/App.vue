@@ -17,7 +17,9 @@ export default {
       axios.get('https://api.themoviedb.org/3/search/movie?',
       {params: {
         api_key: store.config.api_key,
+        language: store.config.lang,
         query: store.search
+        
       }})
       .then((response) => {
         console.log(response.data.results);
@@ -32,7 +34,10 @@ export default {
       }})
       .then((response) => {
         console.log(response.data.results);
-        this.store.seriesResults= response.data.results
+        this.store.seriesResults= response.data.results.map(element => {
+          element.title = element.name
+          return element
+        })
       })      
     },
     search(){

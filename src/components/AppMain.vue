@@ -1,15 +1,15 @@
 <script>
-import CountryFlag from 'vue-country-flag-next';
+import CardMain from './CardMain.vue';
 import { store } from '../store';
 export default {
     name: 'AppMain',
+    emits: ["submit"],
     components: {
-        CountryFlag
+        CardMain
     },
     data() {
         return {
             store,
-            x: "it",
         }
     },
 }    
@@ -20,17 +20,11 @@ export default {
     <button @click="$emit('submit')">cerca</button>
     <h1>film</h1>   
     <div v-for="movie in store.moviesResults">
-        <h1>{{ movie.title }}</h1>
-        <h2>{{ movie.original_title }}</h2>
-        <h3>{{ movie.original_language }}</h3>
-        <h4>{{ movie.vote_average }}</h4>
+        <CardMain :item="movie"/>
     </div>
     <h1>serie</h1>
     <div v-for="serie in store.seriesResults">
-        <h1>{{ serie.name }}</h1>
-        <h2>{{ serie.original_name }}</h2>
-        <h3>{{ serie.original_language }}</h3>
-        <h4>{{ serie.vote_average }}</h4>
+        <CardMain :item="serie"/>
     </div>
 </template>
 
