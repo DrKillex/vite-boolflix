@@ -35,6 +35,7 @@ export default {
       .then((response) => {
         console.log(response.data.results);
         this.store.seriesResults= response.data.results.map(element => {
+          element.original_title = element.original_name
           element.title = element.name
           return element
         })

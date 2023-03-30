@@ -9,6 +9,11 @@ export default {
     props: {
         item: Object
     },
+    data(){
+        return {
+            urlImg: "https://image.tmdb.org/t/p/w342"
+        }
+    },
     computed: {
         getLang() {
             switch (this.item.original_language){
@@ -29,16 +34,21 @@ export default {
 
 <template>
     <article>
-        <h1>{{ item.title }}</h1>
-        <h2>{{ item.original_title }}</h2>
-        <h3>{{ item.original_language }}</h3>
-        <country-flag :country='getLang' size='normal'/>
-        <h4>{{ getScore }}</h4>
+        <div class="img">
+            <img :src="urlImg + item.poster_path" alt="">
+        </div>
+        <p>{{ item.title }}</p>
+        <p>{{ item.original_title }}</p>
+        <div class="flag">
+            <country-flag :country='getLang' size='normal'/>
+        </div>
+        <div class="score">
+            <font-awesome-icon icon="fa-solid fa-star" v-for="i in getScore"/>
+            <font-awesome-icon icon="fa-regular fa-star" v-for="i in 5 - getScore"/>
+        </div>        
     </article>
 </template>
 
 <style lang="scss" scoped>
-div{
-    border: 1px solid black;
-}
+
 </style>
