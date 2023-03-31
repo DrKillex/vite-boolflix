@@ -14,8 +14,8 @@ export default {
 
 <template>
     <header>
-        <div class="container">
-            <div class="row justify-content-between py-3">
+        <div class="container h-100">
+            <div class="row justify-content-between align-items-center h-100">
                 <div class="col-auto">
                     <div class="logo">
                         BOOLFLIX
@@ -34,6 +34,7 @@ export default {
 
 <style lang="scss" scoped>
     header{
+        height: 70px;
         background-color: black;
         color: red;
     }

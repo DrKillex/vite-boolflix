@@ -60,18 +60,20 @@ article {
     position: relative;
     background-color: black;
     font-size: 14px;
-    overflow-y: scroll;
-    text-overflow: ellipsis;
     min-height: 300px;
+    
+
+    .overview{
+        overflow-y: scroll;
+        max-height: 200px;
+        z-index: 5;
+    }
     
 
     .img {
         position: relative;
         z-index: 10;
 
-        img:hover {
-            opacity: 0;
-        }
     }
     .info {
         position: absolute;
@@ -82,9 +84,16 @@ article {
     }
 
 }
+article:hover .img {
+    z-index: 0;
+}
 article:hover img {
+    z-index: 0;
     opacity: 0;
 }
-
-article::-webkit-scrollbar,#boxContacts .userList::-webkit-scrollbar {    width: 0;    height: 0;}
+.overview::-webkit-scrollbar {    width: 6px;    height: 6px;}
+.overview::-webkit-scrollbar-track {    border-radius: 10px;    background: rgba(172, 12, 12, 0);}
+.overview::-webkit-scrollbar-thumb {    border-radius: 10px;    background: rgba(225, 9, 9, 0.2);}
+.overview::-webkit-scrollbar-thumb:hover {    background: rgba(150, 14, 14, 0.4);}
+.overview::-webkit-scrollbar-thumb:active {    background: rgba(210, 8, 8, 0.5);}
 </style>
