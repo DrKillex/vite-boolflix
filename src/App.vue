@@ -4,7 +4,7 @@ import { store } from './store';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 export default {
-  name:'App',
+  name: 'App',
   components: {
     AppHeader,
     AppMain
@@ -16,67 +16,59 @@ export default {
     }
   },
   methods: {
-    searchMethod(url, type){
-      axios.get( url + type ,
-      {params: {
-        api_key: this.store.config.api_key,
-        language: this.store.config.lang,
-        query: this.store.search       
-      }})
-      .then((response) => {
-        console.log(type);
-        console.log(response.data.results);
-        if (type === '/movie') {
-          this.store.moviesResults = response.data.results
-        } else {
-          this.store.seriesResults = response.data.results
-        }
-      })      
+    searchMethod(url, type) {
+      axios.get(url + type,
+        {
+          params: {
+            api_key: this.store.config.api_key,
+            language: this.store.config.lang,
+            query: this.store.search
+          }
+        })
+        .then((response) => {
+          if (type === '/movie') {
+            this.store.moviesResults = response.data.results
+          } else if (type === '/tv') {
+            this.store.seriesResults = response.data.results.map(element => {
+              element.original_title = element.original_name
+              element.title = element.name
+              delete element.original_name;
+              delete element.name
+              return element
+            })
+          } else if (type === '/person') {
+            this.store.personResults = response.data.results
+          }
+        })
     },
-    // searchMovie(){
-    //   axios.get('https://api.themoviedb.org/3/search/movie',
-    //   {params: {
-    //     api_key: store.config.api_key,
-    //     language: store.config.lang,
-    //     query: store.search
-        
-    //   }})
-    //   .then((response) => {
-    //     console.log(response.data.results);
-    //     this.store.moviesResults= response.data.results
-    //   })      
-    // },
-    // searchSeries(){
-    //   axios.get('https://api.themoviedb.org/3/search/tv',
-    //   {params: {
-    //     api_key: store.config.api_key,
-    //     query: store.search
-    //   }})
-    //   .then((response) => {
-    //     console.log(response.data.results);
-    //     this.store.seriesResults= response.data.results.map(element => {
-    //       element.original_title = element.original_name
-    //       element.title = element.name
-    //       return element
-    //     })
-    //   })      
-    // },
-    search(){
-      this.searchMethod(this.store.config.urlSearch, this.store.config.searchMovie)
-      this.searchMethod(this.store.config.urlSearch, this.store.config.searchSeries)
-      // this.searchMovie(),
-      // this.searchSeries()
+    search() {
+      if (this.store.searchType === "titolo") {
+        this.store.personResults=[]
+        this.searchMethod(this.store.config.urlSearch, this.store.config.searchMovie)
+        this.searchMethod(this.store.config.urlSearch, this.store.config.searchSeries)
+      } else if (this.store.searchType === "persona") {
+        this.store.moviesResults=[]
+        this.store.seriesResults=[]
+        this.searchMethod(this.store.config.urlSearch, this.store.config.searchPerson)
+      }
+    },
+    easter(){
+      axios.get("https://flynn.boolean.careers/exercises/api/random/word")
+      .then((response) => {
+        console.log(response.data.response)
+        this.store.search=response.data.response
+        this.search()
+      })
     }
+   
   },
 }
 </script>
 
 <template>
-  <AppHeader @submit="this.search()"/>
+  <AppHeader @submit="this.search()" @easter="this.easter()"/>
   <AppMain />
 </template>
 
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

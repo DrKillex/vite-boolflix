@@ -1,5 +1,6 @@
 <script>
 import CountryFlag from 'vue-country-flag-next';
+import { store } from '../store';
 
 export default {
     name: 'CardMain',
@@ -11,7 +12,7 @@ export default {
     },
     data() {
         return {
-            urlImg: "https://image.tmdb.org/t/p/w342"
+            store,
         }
     },
     computed: {
@@ -35,7 +36,8 @@ export default {
 <template>
     <article class="mb-4">
         <div class="img">
-            <img :src="urlImg + item.poster_path" :alt="item.title" class="img-fluid">
+            <img src="src\assets\img\75c14228828545868fd61f0b7ca2c29d.jpg" alt="no image" v-if="item.poster_path===null" class="img-fluid">
+            <img :src="store.config.urlImg + item.poster_path" :alt="item.title" class="img-fluid" v-else>
         </div>
         <div class="info">
             <p class="my-1">titolo: {{ item.title }}</p>
