@@ -16,6 +16,7 @@ export default {
     }
   },
   methods: {
+    //funzione ricerca 
     searchMethod(url, type) {
       axios.get(url + type,
         {
@@ -41,6 +42,7 @@ export default {
           }
         })
     },
+    // metodo che effettua la ricerca
     search() {
       if (this.store.searchType === "titolo") {
         this.store.personResults=[]
@@ -52,6 +54,7 @@ export default {
         this.searchMethod(this.store.config.urlSearch, this.store.config.searchPerson)
       }
     },
+    // piccolo e inutile easter egg
     easter(){
       axios.get("https://flynn.boolean.careers/exercises/api/random/word")
       .then((response) => {
