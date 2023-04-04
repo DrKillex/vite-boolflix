@@ -23,7 +23,7 @@ export default {
         <h2 class="text-center py-2">{{ item.name }}</h2>
         <div class="d-flex">
             <div class="card-img">
-                <img src="src\assets\img\75c14228828545868fd61f0b7ca2c29d.jpg" alt="no image"
+                <img src="../assets/img/75c14228828545868fd61f0b7ca2c29d.jpg" alt="no image"
                     v-if="item.profile_path === null" class="img-fluid">
                 <img :src="store.config.urlImg + item.profile_path" :alt="item.name" class="img-fluid" v-else>
             </div>
