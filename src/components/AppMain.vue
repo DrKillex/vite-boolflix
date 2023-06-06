@@ -26,7 +26,7 @@ export default {
                     return this.store.moviesResults.sort((firstItem, secondItem) => firstItem.vote_average - secondItem.vote_average).reverse();
         }
     },
-    // funzione per determinare ordine di visualizzazione dei film
+    // funzione per determinare ordine di visualizzazione delle serie tv
     displayOrderSeries(){
             switch (this.store.ordine) {
                 case "noOrder":

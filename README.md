@@ -1,10 +1,10 @@
-# Vue Template
+# boolflix
 
-Template di partenza per progetti Vue con option API
+progetto con vite di un sito netflix-like
 
-Per installare il progetto
-- npm install
-- npm run dev
+##features
 
-
+- ricerca film e serie tv per titolo
+- visualizzazione film e serie tv in odrine crescente o decrescente di voto
+- ricerca per membro del cast o della crew
 

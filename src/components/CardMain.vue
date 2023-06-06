@@ -16,6 +16,7 @@ export default {
         }
     },
     computed: {
+        // gestione casistiche lingue non coerenti con countryflag
         getLang() {
             switch (this.item.original_language) {
                 case "en":
@@ -26,6 +27,7 @@ export default {
                     return this.item.original_language;
             }
         },
+        // calcolo punteggio
         getScore() {
             return Math.ceil(this.item.vote_average / 2)
         }

@@ -16,7 +16,7 @@ export default {
     }
   },
   methods: {
-    //funzione ricerca 
+    //metodo ricerca tramite chiamata e modifica risultati per quello che serve
     searchMethod(url, type) {
       axios.get(url + type,
         {
@@ -45,31 +45,31 @@ export default {
     // metodo che effettua la ricerca
     search() {
       if (this.store.searchType === "titolo") {
-        this.store.personResults=[]
+        this.store.personResults = []
         this.searchMethod(this.store.config.urlSearch, this.store.config.searchMovie)
         this.searchMethod(this.store.config.urlSearch, this.store.config.searchSeries)
       } else if (this.store.searchType === "persona") {
-        this.store.moviesResults=[]
-        this.store.seriesResults=[]
+        this.store.moviesResults = []
+        this.store.seriesResults = []
         this.searchMethod(this.store.config.urlSearch, this.store.config.searchPerson)
       }
     },
     // piccolo e inutile easter egg
-    easter(){
+    easter() {
       axios.get("https://flynn.boolean.careers/exercises/api/random/word")
-      .then((response) => {
-        console.log(response.data.response)
-        this.store.search=response.data.response
-        this.search()
-      })
+        .then((response) => {
+          console.log(response.data.response)
+          this.store.search = response.data.response
+          this.search()
+        })
     }
-   
+
   },
 }
 </script>
 
 <template>
-  <AppHeader @submit="this.search()" @easter="this.easter()"/>
+  <AppHeader @submit="this.search()" @easter="this.easter()" />
   <AppMain />
 </template>
 
